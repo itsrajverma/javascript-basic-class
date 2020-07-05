@@ -4,9 +4,9 @@
 // var b = false;
 // var c = "string";
 
-// console.log(a);
-// console.log(b);
-// console.log(c);
+console.log(a);
+console.log(b);
+console.log(c);
 
 var a = 5;
 var b  = '100';
