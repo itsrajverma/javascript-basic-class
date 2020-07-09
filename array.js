@@ -21,3 +21,23 @@ names.forEach(name => {
 });
 
 
+// ["a","b","c","d","e"] 
+console.log("Using for loop")
+for(var i=0;i < names.length; i++){
+    console.log(names[i]);
+}
+
+
+cars.push("FARRARI");
+
+console.log(cars)
+
+
+cars[cars.length]="AUDI";
+
+
+console.log(cars);
+
+delete cars[3];
+
+console.log(cars);
