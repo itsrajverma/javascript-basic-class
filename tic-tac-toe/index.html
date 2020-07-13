@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <title>Tic Tac Toe</title>
+        <style>
+            .game-section{
+                text-align: center;
+            }
+            .game-container{
+                display: grid;
+                grid-template-columns: repeat(3,auto);
+                width: 300px;
+                margin: 50px auto;
+            }
+            .item{
+               width: 100px;
+               height: 100px;
+               border: 1px solid #232323;
+               cursor: pointer; 
+               line-height: 100px;   
+               font-size:65px; 
+            }
+        </style>
+    </head>
+    <body>
+        <div class="game-section">
+            <h1>Tic Tac Toe</h1>
+
+            <h1 class="game-status"></h1>
+            <div class="game-container">
+                 <div data-id="0" class="item"></div>   
+                 <div data-id="1" class="item"></div>
+                 <div data-id="2" class="item"></div>
+                 <div data-id="3" class="item"></div>
+                 <div data-id="4" class="item"></div>
+                 <div data-id="5" class="item"></div>
+                 <div data-id="6" class="item"></div>
+                 <div data-id="7" class="item"></div>
+                 <div data-id="8" class="item"></div>
+            </div>
+        </div>   
+        
+      <script src="script.js"></script>  
+    </body>
+</html>
