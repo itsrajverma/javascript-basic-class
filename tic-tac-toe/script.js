@@ -2,6 +2,8 @@ const gameStatus = document.querySelector(".game-status");
 // declare a variable to get current user
 let currentPlayer = "X";
 
+let gameActive = true;
+
 // declare an array to mange game state
 let gameState = ["","","","","","","","",""];
 
@@ -27,6 +29,12 @@ function handleItemPlayed(clickedItem,clickedItemIndex){
     clickedItem.innerHTML=currentPlayer;
 }
 
+function handlePlayerChange(){
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    gameStatus.innerHTML = currentPlayerTurn();
+
+}
+
 function handleResult(){
     let roundWin = false;
 
@@ -35,7 +43,34 @@ function handleResult(){
         let a = gameState[winCondition[0]];
         let b = gameState[winCondition[1]];
         let c = gameState[winCondition[2]];
+
+        if(a === '' || b === '' || c === ''){
+            continue;
+        }
+
+        if(a === b && b === c){
+            roundWin = true;
+            gameActive = false;
+            break;
+        }
     }
+
+    if(roundWin){
+        gameStatus.innerHTML = winMessage();
+        return;
+    }
+
+    let roundDraw = !gameState.includes("");
+
+    if(roundDraw){
+        gameStatus.innerHTML=drawMessage();
+        gameActive = false;
+        return;
+    }
+
+    handlePlayerChange()
+
+
 
 }
 
@@ -44,12 +79,24 @@ function handleItemClick(clickedItemEvent){
     const clickedItem = clickedItemEvent.target;
     const clickedItemIndex = parseInt(clickedItem.getAttribute("data-id"));
 
-    if(gameState[clickedItemIndex]!==""){
+    if(gameState[clickedItemIndex]!=="" || !gameActive){
         return;
     }
 
     handleItemPlayed(clickedItem,clickedItemIndex);
+
+    handleResult()
+
 }
 
+function handelRestartGame(){
+    gameActive = true;
+    currentPlayer = "X";
+    gameState = ["","","","","","","","",""];
+    gameStatus.innerHTML = currentPlayerTurn();
+    document.querySelectorAll(".item").forEach(item => item.innerHTML='');
+}
 
 document.querySelectorAll(".item").forEach(item => item.addEventListener("click",handleItemClick));
+
+document.querySelector("#restart").addEventListener('click',handelRestartGame);
